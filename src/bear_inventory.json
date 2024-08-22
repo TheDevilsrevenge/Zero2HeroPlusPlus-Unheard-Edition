@@ -1,17 +1,17 @@
 {
-    "equipment": "6613bb72b5b0ba138a0fa9f4",
+    "equipment": "664113fa049fd2369707c37e",
     "fastPanel": {},
     "hideoutAreaStashes": {},
     "items": [{
-            "_id": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "664113fa049fd2369707c37e",
             "_tpl": "55d7217a4bdc2d86028b456d"
         }, {
             "_id": "63db64cbf9963741dc0d741f",
             "_tpl": "6401c7b213d9b818bf0e7dd7"
         }, {
-            "_id": "6613bb72b5b0ba138a0fa9e4",
-            "_tpl": "5857a8bc2459772bad15db29",
-            "parentId": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "664113fa049fd2369707c36e",
+            "_tpl": "665ee77ccf2d642e98220bca",
+            "parentId": "664113fa049fd2369707c37e",
             "slotId": "SecuredContainer"
         }, {
             "_id": "664113fa049fd2369707c37c",
@@ -33,12 +33,12 @@
         }, {
             "_id": "664113fa049fd2369707c3b5",
             "_tpl": "65ca457b4aafb5d7fc0dcb5d",
-            "parentId": "664113fa049fd2369707c4eb",
+            "parentId": "664113fa049fd2369707c37e",
             "slotId": "Scabbard",
             "upd": {
                 "Repairable": {
-                    "Durability": 80,
-                    "MaxDurability": 80
+                    "Durability": 70,
+                    "MaxDurability": 70
                 }
             }
         }

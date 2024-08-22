@@ -25,12 +25,15 @@ class Mod implements IPostDBLoadMod
         const usecInventoryData = JSON.parse(readFileSync(join(__dirname, "./usec_inventory.json"), "utf-8"));
         const traderStanding = JSON.parse(readFileSync(join(__dirname, "./traders.json"), "utf-8"));
         const description = JSON.parse(readFileSync(join(__dirname, "./descLocale.json"), "utf-8"));
+        const skill_issue = JSON.parse(readFileSync(join(__dirname, "./skill_issue.json"), "utf-8"));
         
         zthProfile.bear.character.Inventory = bearInventoryData;
         zthProfile.usec.character.Inventory = usecInventoryData;
         zthProfile.bear.trader = traderStanding;
         zthProfile.usec.trader = traderStanding;
         zthProfile.descriptionLocaleKey = description;
+        zthProfile.bear.character.Skills = skill_issue;
+        zthProfile.usec.character.Skills = skill_issue;
 
 
 

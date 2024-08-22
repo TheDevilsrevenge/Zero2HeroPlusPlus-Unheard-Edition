@@ -1,22 +1,22 @@
 {
-    "equipment": "6613bb72b5b0ba138a0fa9f4",
+    "equipment": "664115f68b8ae858750609b3",
     "fastPanel": {},
     "hideoutAreaStashes": {},
     "items": [{
-            "_id": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "664115f68b8ae858750609b3",
             "_tpl": "55d7217a4bdc2d86028b456d"
         }, {
             "_id": "63db64cbf9963741dc0d741f",
             "_tpl": "6401c7b213d9b818bf0e7dd7"
         }, {
-            "_id": "6613bb72b5b0ba138a0fa9e4",
-            "_tpl": "5857a8bc2459772bad15db29",
-            "parentId": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "664115f68b8ae858750609a4",
+            "_tpl": "665ee77ccf2d642e98220bca",
+            "parentId": "664115f68b8ae858750609b3",
             "slotId": "SecuredContainer"
         }, {
-            "_id": "6613bb72b5b0ba138a0fa9f2",
-            "_tpl": "627a4e6b255f7527fb05a0f6",
-            "parentId": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "664115f68b8ae858750609b1",
+            "_tpl": "65e080be269cbd5c5005e529",
+            "parentId": "664115f68b8ae858750609b3",
             "slotId": "Pockets"
         }, {
             "_id": "6613e1cf291a2e76b0026acc",
@@ -31,14 +31,14 @@
             "_id": "60dca3da42ad9b706b369aca",
             "_tpl": "602543c13fee350cd564d032"
         }, {
-            "_id": "5fe4977574f15b4ad31b661b",
-            "_tpl": "54491bb74bdc2d09088b4567",
-            "parentId": "6613bb72b5b0ba138a0fa9f4",
+            "_id": "6651d79c3a25ddd0fc054a05",
+            "_tpl": "65ca457b4aafb5d7fc0dcb5d",
+            "parentId": "6651d79c3a25ddd0fc054a08",
             "slotId": "Scabbard",
             "upd": {
                 "Repairable": {
-                    "Durability": 80,
-                    "MaxDurability": 80
+                    "Durability": 70,
+                    "MaxDurability": 70
                 }
             }
         }
