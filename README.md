@@ -1,3 +1,4 @@
+# BEWARE THIS MOD IS NOT YET IN A WORKING STATE, When it's finished i will upload it on SPT-Hub and upload a release file here as well
 # Joey's Zero to Hero (Unheard Edition) profile for Singleplayer Tarkov
 
 It's the same as my first mod for SPT but instead of having Edge of Darkness you will now have Unheard Edition without the trader bonus or any gear/money
