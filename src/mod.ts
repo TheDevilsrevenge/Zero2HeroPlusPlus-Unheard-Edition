@@ -35,9 +35,6 @@ class Mod implements IPostDBLoadMod
         zthProfile.bear.character.Skills = skill_issue;
         zthProfile.usec.character.Skills = skill_issue;
 
-
-
-
         tables.templates.profiles[profileName] = zthProfile;
 
         logger.logWithColor("[Joey's ZTH Mod] Joey's ZTH++ [UNHEARD EDITION] Loaded successfully", LogTextColor.GREEN);
