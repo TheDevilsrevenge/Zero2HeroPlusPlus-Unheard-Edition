@@ -1,10 +1,10 @@
 {
     "name": "Zero2Hero++ Unheard Editon",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "src/mod.js",
     "license": "MIT",
     "author": "TheDevilsrevenge",
-    "sptVersion": "~3.9",
+    "sptVersion": "~3.10",
     "scripts": {
         "setup": "npm -i",
         "build": "node ./packageBuild.ts"
