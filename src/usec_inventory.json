@@ -1,7 +1,10 @@
 {
     "equipment": "664115f68b8ae858750609b3",
     "fastPanel": {},
-    "hideoutAreaStashes": {},
+    "favoriteItems": [],
+    "hideoutAreaStashes": {
+        "27": "66c903b7cbd137db330413a2"
+    },
     "items": [{
             "_id": "664115f68b8ae858750609b3",
             "_tpl": "55d7217a4bdc2d86028b456d"
@@ -41,6 +44,10 @@
                     "MaxDurability": 70
                 }
             }
+        },
+        {
+            "_id": "66c903b7cbd137db330413a2",
+            "_tpl": "66740c3739b9da6ce402ee65"
         }
     ],
     "questRaidItems": "5fe49444ae6628187a2e78b9",
