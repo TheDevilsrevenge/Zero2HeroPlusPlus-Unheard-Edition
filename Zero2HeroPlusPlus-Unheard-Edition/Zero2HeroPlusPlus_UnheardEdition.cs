@@ -46,10 +46,14 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
             logger.Error("Targeted profile could not be copied");
             return Task.CompletedTask;
         }
+        unheardCopy.Bear.Trader = modHelper.GetJsonDataFromFile<ProfileTraderTemplate>
+            (pathToMod, Path.Combine("jsonData", "traders.json"));
+        unheardCopy.Usec.Trader = modHelper.GetJsonDataFromFile<ProfileTraderTemplate>
+            (pathToMod, Path.Combine("jsonData", "traders.json"));
 
         unheardCopy.DescriptionLocaleKey = profileDescription switch
         {
-            "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost"
+            "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost"
         };
         databaseServer.GetTables().Templates.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
         logger.Success("Joey's Zero2Hero++ loaded succesfully!");
