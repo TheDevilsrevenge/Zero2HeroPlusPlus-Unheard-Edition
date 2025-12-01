@@ -41,7 +41,8 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         var profileDescription = profileDesc.GetDesiredServerLocale();
         var unheardCopy = cloner.Clone(databaseServer.GetTables().Templates.Profiles["Unheard"])!;
-        if (unheardCopy.Bear is null)
+        if (unheardCopy.Bear?.Character is null
+            || unheardCopy.Usec?.Character is null)
         {
             logger.Error("Targeted profile could not be copied");
             return Task.CompletedTask;
@@ -50,10 +51,19 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
             (pathToMod, Path.Combine("jsonData", "traders.json"));
         unheardCopy.Usec.Trader = modHelper.GetJsonDataFromFile<ProfileTraderTemplate>
             (pathToMod, Path.Combine("jsonData", "traders.json"));
+        unheardCopy.Bear.Character.Skills = modHelper.GetJsonDataFromFile<Skills>
+            (pathToMod, Path.Combine("jsonData", "skills.json"));
+        unheardCopy.Usec.Character.Skills = modHelper.GetJsonDataFromFile<Skills>
+            (pathToMod, Path.Combine("jsonData", "skills.json"));
+        unheardCopy.Bear.Character.Inventory = modHelper.GetJsonDataFromFile<BotBaseInventory>
+            (pathToMod, Path.Combine("jsonData", "bear_inventory.json"));
+        unheardCopy.Usec.Character.Inventory = modHelper.GetJsonDataFromFile<BotBaseInventory>
+            (pathToMod, Path.Combine("jsonData", "usec_inventory.json"));
 
         unheardCopy.DescriptionLocaleKey = profileDescription switch
         {
-            "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost"
+            "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost",
+            _ => ""
         };
         databaseServer.GetTables().Templates.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
         logger.Success("Joey's Zero2Hero++ loaded succesfully!");
