@@ -12,6 +12,7 @@ using Path = System.IO.Path;
 
 namespace Zero2HeroPlusPlus_Unheard_Edition;
 
+// Data for the mod
 public record ModMetadata : AbstractModMetadata
 {
     public override string ModGuid { get; init; } = "com.thedevilsrevenge.zerotoherounheard";
@@ -36,7 +37,8 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
     LocaleService profileDesc,
     ISptLogger<Zero2HeroPlusPlus_Unheard_Edition> logger) : IOnLoad
 {
- public Task OnLoad()
+    // Copying Unheard profile
+    public Task OnLoad()
     {
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         var profileDescription = profileDesc.GetDesiredServerLocale();
@@ -47,19 +49,23 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
             logger.Error("Targeted profile could not be copied");
             return Task.CompletedTask;
         }
+        // Removing trader bonus
         unheardCopy.Bear.Trader = modHelper.GetJsonDataFromFile<ProfileTraderTemplate>
             (pathToMod, Path.Combine("jsonData", "traders.json"));
         unheardCopy.Usec.Trader = modHelper.GetJsonDataFromFile<ProfileTraderTemplate>
             (pathToMod, Path.Combine("jsonData", "traders.json"));
+        // Removing skill bonus
         unheardCopy.Bear.Character.Skills = modHelper.GetJsonDataFromFile<Skills>
             (pathToMod, Path.Combine("jsonData", "skills.json"));
         unheardCopy.Usec.Character.Skills = modHelper.GetJsonDataFromFile<Skills>
             (pathToMod, Path.Combine("jsonData", "skills.json"));
+        // Clearing inventory
         unheardCopy.Bear.Character.Inventory = modHelper.GetJsonDataFromFile<BotBaseInventory>
             (pathToMod, Path.Combine("jsonData", "bear_inventory.json"));
         unheardCopy.Usec.Character.Inventory = modHelper.GetJsonDataFromFile<BotBaseInventory>
             (pathToMod, Path.Combine("jsonData", "usec_inventory.json"));
 
+        // Custom description (need to add more languages later down the line)
         unheardCopy.DescriptionLocaleKey = profileDescription switch
         {
             "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost",
