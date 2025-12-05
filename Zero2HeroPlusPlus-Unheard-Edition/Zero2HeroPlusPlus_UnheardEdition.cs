@@ -72,7 +72,7 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
             _ => ""
         };
         databaseServer.GetTables().Templates.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
-        logger.Success("Joey's Zero2Hero++ loaded succesfully!");
+        logger.Success("Joey's Zero2Hero++ loaded successfully!");
         return Task.CompletedTask;
     }
 
