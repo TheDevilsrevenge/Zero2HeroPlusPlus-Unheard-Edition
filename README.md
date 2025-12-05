@@ -7,6 +7,10 @@ It's the same as my first mod for SPT but instead of having Edge of Darkness you
 - Open the zip file and drag the user folder into your SPT folder
 - Startup SPT-Server and enjoy :D
 
+## Gif just in case (It's a different mod but it applies for installing this mod as well)
+![34vXXDj](https://github.com/user-attachments/assets/dda03892-ee0f-4ce7-97d5-a6bbb4bd419c)
+
+
 If you have any issues with the mod, please open a issue on the github page and i will try to look into it as soon as possible
 
 Check out my other Zero2Hero profile as well, based on EoD instead of Unheard [HERE](https://github.com/TheDevilsrevenge/Zero2HeroPlusPlus)
