@@ -69,6 +69,7 @@ public class Zero2HeroPlusPlusUnheardEdition(
         unheardCopy.DescriptionLocaleKey = profileDescription switch
         {
             "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost",
+            "ru" => "Zero2Hero с тайником Unheard, карманами и, конечно же, контейнером Gamma, без повышения репутации торговца и без повышения навыков",
             _ => ""
         };
         templateTable.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
