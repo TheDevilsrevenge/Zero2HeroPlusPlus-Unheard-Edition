@@ -1,48 +1,48 @@
 ﻿using System.Reflection;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils.Cloners;
 using Path = System.IO.Path;
 
 namespace Zero2HeroPlusPlus_Unheard_Edition;
 
 // Data for the mod
-public record ModMetadata : AbstractModMetadata
+public record ModMetadata : IModMetadata
 {
-    public override string ModGuid { get; init; } = "com.thedevilsrevenge.zerotoherounheard";
-    public override string Name { get; init; } = "Zero2HeroUnheardEdition";
-    public override string Author { get; init; } = "TheDevilsrevenge";
-    public override List<string>? Contributors { get; init; }
-    public override SemanticVersioning.Version Version { get; init; } = new("2.0.0");
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.0");
-    public override List<string>? Incompatibilities { get; init; }
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-    public override string? Url { get; init; }
-    public override bool? IsBundleMod { get; init; }
-    public override string License { get; init; } = "MIT";
-
+    public string ModGuid { get; init; } = "com.thedevilsrevenge.zerotoherounheard";
+    public string Name { get; init; } = "Zero2HeroUnheardEdition";
+    public string Author { get; init; } = "TheDevilsrevenge";
+    public List<string>? Contributors { get; init; }
+    public SemanticVersioning.Version Version { get; init; } = new("2.1.0");
+    public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.0");
+    public List<string>? Incompatibilities { get; init; }
+    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
+    public string? Url { get; init; }
+    public string License { get; init; } = "MIT";
+    public bool? IsBundleMod { get; init; }
+    public bool HasPrepatcher { get; init; }
 }
 
-[Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 1)]
-public class Zero2HeroPlusPlus_Unheard_Edition(
-    DatabaseServer databaseServer,
+[Injectable(TypePriority = OnLoadOrder.PostLoad + 1)]
+public class Zero2HeroPlusPlusUnheardEdition(
+    TemplateTable templateTable,
     ICloner cloner,
     ModHelper modHelper,
     LocaleService profileDesc,
-    ISptLogger<Zero2HeroPlusPlus_Unheard_Edition> logger) : IOnLoad
+    ISptLogger<Zero2HeroPlusPlusUnheardEdition> logger) : IOnLoad
 {
     // Copying Unheard profile
-    public Task OnLoad()
+    public Task OnLoadAsync(CancellationToken cancellationToken)
     {
         var pathToMod = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         var profileDescription = profileDesc.GetDesiredServerLocale();
-        var unheardCopy = cloner.Clone(databaseServer.GetTables().Templates.Profiles["Unheard"])!;
+        var unheardCopy = cloner.Clone(templateTable.Profiles["Unheard"])!;
         if (unheardCopy.Bear?.Character is null
             || unheardCopy.Usec?.Character is null)
         {
@@ -69,11 +69,12 @@ public class Zero2HeroPlusPlus_Unheard_Edition(
         unheardCopy.DescriptionLocaleKey = profileDescription switch
         {
             "en" => "Zero2Hero with Unheard stash, pockets and of course the Gamma container, no trader rep boost and no skill boost",
+            "ru" => "Zero2Hero с тайником Unheard, карманами и, конечно же, контейнером Gamma, без повышения репутации торговца и без повышения навыков",
             _ => ""
         };
-        databaseServer.GetTables().Templates.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
+        templateTable.Profiles["Joey's Zero2Hero++ Unheard Edition"] = unheardCopy;
         logger.Success("Joey's Zero2Hero++ loaded successfully!");
+       
         return Task.CompletedTask;
     }
-
 }
