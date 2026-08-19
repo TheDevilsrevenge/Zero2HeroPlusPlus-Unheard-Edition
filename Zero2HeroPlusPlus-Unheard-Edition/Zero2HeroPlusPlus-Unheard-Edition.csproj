@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RootNamespace>Zero2HeroPlusPlus_Unheard_Edition</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<Version>2.0.0</Version>
+	<Version>2.1.0</Version>
 	<OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)-$(version)\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SPTarkov.Common" Version="4.0.7" />
-    <PackageReference Include="SPTarkov.DI" Version="4.0.7" />
-    <PackageReference Include="SPTarkov.Server.Core" Version="4.0.7" />
+    <PackageReference Include="SPTarkov.Common" Version="4.1.2" />
+    <PackageReference Include="SPTarkov.DI" Version="4.1.2" />
+    <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>
