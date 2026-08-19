@@ -1,25 +1,59 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>Zero2HeroPlusPlus_Unheard_Edition</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-	<Version>2.1.0</Version>
-	<OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)-$(version)\</OutputPath>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+<!--        <RootNamespace>Zero2HeroPlusPlusUnheardEdition</RootNamespace>-->
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>2.1.0</Version>
+        <Configuration>Release</Configuration>
+        <AssemblyName>Zero2HeroPlusPlusUnheardEdition</AssemblyName>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="SPTarkov.Common" Version="4.1.2" />
-    <PackageReference Include="SPTarkov.DI" Version="4.1.2" />
-    <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
-  </ItemGroup>
+    <Target Name="RemoveDirectories" BeforeTargets="BeforeBuild">
+        <RemoveDir Directories="./bin/;./build/;./dist/"/>
+    </Target>
 
-  <ItemGroup>
-    <None Include="jsonData\*.*">
-		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	</None>
-  </ItemGroup>
+    <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
+        <ItemGroup>
+            <DataFiles Include="bin\$(Configuration)\$(TargetFramework)\jsonData\**\*"/>
+        </ItemGroup>
+        <Copy SourceFiles="bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).dll"
+              DestinationFolder="./build/SPT_Runtime/user/mods/$(AssemblyName)/"/>
+        <Copy SourceFiles="@(DataFiles)"
+              DestinationFolder="./build/SPT_Runtime/user/mods/$(AssemblyName)/jsonData/%(RecursiveDir)"
+              SkipUnchangedFiles="true" Condition="'@(DataFiles)' != ''"/>
+    </Target>
+
+    <Target Name="ZipOutputPath" AfterTargets="Build">
+        <MakeDir Directories="./dist" Condition="!Exists('./dist')"/>
+        <Delete Files="./dist/$(AssemblyName)-$(Version).zip" Condition="Exists('./dist/$(AssemblyName)-$(Version).zip')"/>
+        <ZipDirectory SourceDirectory="./build" DestinationFile="./dist/$(AssemblyName)-$(Version).zip"/>
+    </Target>
+
+    <ItemGroup>
+        <PackageReference Include="SPTarkov.Common" Version="4.1.2"/>
+        <PackageReference Include="SPTarkov.DI" Version="4.1.2"/>
+        <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <None Update="jsonData\bear_inventory.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="jsonData\skills.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="jsonData\traders.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="jsonData\usec_inventory.json">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="dist\" />
+    </ItemGroup>
 
 </Project>
